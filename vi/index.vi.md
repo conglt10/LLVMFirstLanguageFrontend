@@ -1,0 +1,24 @@
+# Hướng dẫn xây dựng Frontend ngôn ngữ đầu tiên với LLVM
+
+**Yêu cầu:** Hướng dẫn này giả định bạn đã biết C++, nhưng không cần có kinh nghiệm về trình biên dịch trước đó.
+
+Chào mừng bạn đến với hướng dẫn "My First Language Frontend with LLVM" (Xây dựng frontend ngôn ngữ đầu tiên với LLVM). Ở đây, chúng ta sẽ cùng nhau hiện thực một ngôn ngữ đơn giản, qua đó cho thấy việc này thú vị và dễ dàng đến mức nào. Hướng dẫn này sẽ giúp bạn bắt tay vào làm nhanh chóng và đưa ra một ví dụ cụ thể về một chương trình sử dụng LLVM để sinh mã.
+
+Hướng dẫn này giới thiệu ngôn ngữ đơn giản "Kaleidoscope", xây dựng nó theo từng bước qua nhiều chương, cho thấy ngôn ngữ được hình thành dần theo thời gian như thế nào. Cách tiếp cận này cho phép chúng ta đề cập đến nhiều ý tưởng về thiết kế ngôn ngữ cũng như các ý tưởng riêng của LLVM, đồng thời trình bày và giải thích mã nguồn ở từng bước, và tránh việc phải tiếp nhận quá nhiều chi tiết ngay từ đầu. Chúng tôi đặc biệt khuyến khích bạn *thực hành với mã nguồn này* - hãy tạo một bản sao, tùy ý chỉnh sửa và thử nghiệm.
+
+**Cảnh báo**: Để tập trung vào việc giảng dạy các kỹ thuật trình biên dịch và đặc biệt là LLVM, hướng dẫn này *không* thể hiện các thực hành tốt nhất (best practices) theo nguyên tắc kỹ thuật phần mềm. Ví dụ, mã nguồn sử dụng biến toàn cục tràn lan, không dùng [visitor](http://en.wikipedia.org/wiki/Visitor_pattern), v.v... mà thay vào đó giữ mọi thứ đơn giản và tập trung vào các chủ đề đang bàn.
+
+Hướng dẫn này được chia thành các chương, mỗi chương đề cập đến một chủ đề riêng, cho phép bạn bỏ qua và đọc trước tùy ý:
+
+- [Chương 1: Ngôn ngữ Kaleidoscope và Lexer](LangImpl01.md) - Chương này cho thấy đích đến của chúng ta và các chức năng cơ bản mà ta muốn xây dựng. Lexer (bộ phân tích từ vựng) cũng là phần đầu tiên khi xây dựng parser cho một ngôn ngữ, và chúng ta sử dụng một lexer C++ đơn giản, dễ hiểu.
+- [Chương 2: Hiện thực Parser và AST](LangImpl02.md) - Khi đã có lexer, chúng ta có thể bàn về các kỹ thuật phân tích cú pháp và cách xây dựng AST (cây cú pháp trừu tượng) cơ bản. Chương này mô tả phương pháp phân tích đệ quy đi xuống (recursive descent parsing) và phân tích theo độ ưu tiên toán tử (operator precedence parsing).
+- [Chương 3: Sinh mã LLVM IR](LangImpl03.md) - Khi AST đã sẵn sàng, chúng ta sẽ cho thấy việc sinh LLVM IR dễ dàng như thế nào, đồng thời trình bày một cách đơn giản để tích hợp LLVM vào dự án của bạn.
+- [Chương 4: Bổ sung hỗ trợ JIT và Optimizer](LangImpl04.md) - Một điểm tuyệt vời của LLVM là hỗ trợ biên dịch JIT, vì vậy chúng ta sẽ đi thẳng vào nó và cho bạn thấy chỉ cần 3 dòng mã để thêm hỗ trợ JIT. Các chương sau sẽ trình bày cách sinh file .o.
+- [Chương 5: Mở rộng ngôn ngữ: Luồng điều khiển](LangImpl05.md) - Khi ngôn ngữ cơ bản đã hoạt động, chúng ta sẽ trình bày cách mở rộng nó với các thao tác luồng điều khiển (câu lệnh 'if' và vòng lặp 'for'). Điều này cho chúng ta cơ hội bàn về việc xây dựng dạng SSA và luồng điều khiển.
+- [Chương 6: Mở rộng ngôn ngữ: Toán tử do người dùng định nghĩa](LangImpl06.md) - Chương này mở rộng ngôn ngữ để cho phép người dùng định nghĩa các toán tử một ngôi và hai ngôi tùy ý - kèm theo độ ưu tiên có thể gán được! Nhờ đó, chúng ta có thể xây dựng một phần đáng kể của "ngôn ngữ" dưới dạng các hàm thư viện.
+- [Chương 7: Mở rộng ngôn ngữ: Biến khả biến](LangImpl07.md) - Chương này bàn về việc bổ sung biến cục bộ do người dùng định nghĩa cùng với toán tử gán. Qua đó cho thấy việc xây dựng dạng SSA trong LLVM dễ dàng như thế nào: LLVM *không* yêu cầu front-end của bạn phải tự xây dựng dạng SSA thì mới sử dụng được!
+- [Chương 8: Biên dịch thành file đối tượng](LangImpl08.md) - Chương này giải thích cách lấy LLVM IR và biên dịch nó xuống thành file đối tượng (object file), giống như một trình biên dịch tĩnh vẫn làm.
+- [Chương 9: Thông tin gỡ lỗi](LangImpl09.md) - Một ngôn ngữ thực thụ cần hỗ trợ trình gỡ lỗi (debugger), vì vậy chúng ta bổ sung thông tin gỡ lỗi cho phép đặt breakpoint trong các hàm Kaleidoscope, in ra các biến tham số và gọi hàm!
+- [Chương 10: Kết luận và một số điều thú vị khác](LangImpl10.md) - Chương này khép lại loạt bài bằng việc bàn về các cách mở rộng ngôn ngữ, đồng thời đưa ra các tài liệu tham khảo về những "chủ đề đặc biệt" như bổ sung hỗ trợ thu gom rác (garbage collection), ngoại lệ (exception), gỡ lỗi, hỗ trợ "spaghetti stack", v.v.
+
+Đến cuối hướng dẫn, chúng ta sẽ viết chưa đến 1000 dòng mã (không tính dòng chú thích và dòng trống). Chỉ với lượng mã nhỏ này, chúng ta sẽ xây dựng được một trình biên dịch nhỏ gọn mà hoàn chỉnh cho một ngôn ngữ không hề đơn giản, bao gồm lexer viết tay, parser, AST, cùng với hỗ trợ sinh mã - cả tĩnh lẫn JIT! Phạm vi rộng như vậy là minh chứng rõ ràng cho sức mạnh của LLVM và lý giải vì sao nó là một nền tảng đích (target) phổ biến đối với các nhà thiết kế ngôn ngữ cũng như những ai cần sinh mã hiệu năng cao.
