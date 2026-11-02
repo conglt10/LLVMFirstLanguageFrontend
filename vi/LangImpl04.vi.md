@@ -498,4 +498,4 @@ Nếu bạn biên dịch trên Linux, hãy nhớ thêm cả tùy chọn "-rdynam
 :language: c++
 ```
 
-[Tiếp theo: Mở rộng ngôn ngữ: luồng điều khiển](LangImpl05.md)
+[Tiếp theo: Mở rộng ngôn ngữ: luồng điều khiển](LangImpl05.vi.md)

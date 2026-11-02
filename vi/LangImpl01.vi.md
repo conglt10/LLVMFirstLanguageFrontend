@@ -132,4 +132,4 @@ Chúng ta xử lý chú thích bằng cách bỏ qua cho đến cuối dòng r�
 
 Với những phần trên, chúng ta đã có một lexer hoàn chỉnh cho ngôn ngữ Kaleidoscope cơ bản ([toàn bộ mã nguồn](LangImpl02.md#full-code-listing) của Lexer có trong [chương tiếp theo](LangImpl02.md) của hướng dẫn). Tiếp theo, chúng ta sẽ [xây dựng một parser đơn giản sử dụng lexer này để tạo Cây cú pháp trừu tượng (Abstract Syntax Tree)](LangImpl02.md). Khi đã có nó, chúng ta sẽ thêm một chương trình điều khiển (driver) để bạn có thể sử dụng lexer và parser cùng nhau.
 
-[Tiếp theo: Hiện thực Parser và AST](LangImpl02.md)
+[Tiếp theo: Hiện thực Parser và AST](LangImpl02.vi.md)

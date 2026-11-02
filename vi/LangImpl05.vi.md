@@ -594,4 +594,4 @@ Và đây là mã nguồn:
 :language: c++
 ```
 
-[Tiếp theo: Mở rộng ngôn ngữ: toán tử do người dùng định nghĩa](LangImpl06.md)
+[Tiếp theo: Mở rộng ngôn ngữ: toán tử do người dùng định nghĩa](LangImpl06.vi.md)

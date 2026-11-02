@@ -627,4 +627,4 @@ Trên một số nền tảng, bạn sẽ cần chỉ định -rdynamic hoặc -
 :language: c++
 ```
 
-[Tiếp theo: Mở rộng ngôn ngữ: biến khả biến / xây dựng SSA](LangImpl07.md)
+[Tiếp theo: Mở rộng ngôn ngữ: biến khả biến / xây dựng SSA](LangImpl07.vi.md)

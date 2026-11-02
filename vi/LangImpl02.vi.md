@@ -521,4 +521,4 @@ clang++ -g -O3 toy.cpp
 :language: c++
 ```
 
-[Tiếp theo: Hiện thực sinh mã sang LLVM IR](LangImpl03.md)
+[Tiếp theo: Hiện thực sinh mã sang LLVM IR](LangImpl03.vi.md)
