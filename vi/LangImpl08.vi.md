@@ -170,4 +170,4 @@ average of 3.0 and 4.0: 3.5
 :language: c++
 ```
 
-[Tiếp theo: Thêm thông tin gỡ lỗi](LangImpl09.md)
+[Tiếp theo: Thêm thông tin gỡ lỗi](LangImpl09.vi.md)

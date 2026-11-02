@@ -342,4 +342,4 @@ clang++ -g toy.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core o
 :language: c++
 ```
 
-[Tiếp theo: Kết luận và một số mẹo hữu ích khác về LLVM](LangImpl10.md)
+[Tiếp theo: Kết luận và một số mẹo hữu ích khác về LLVM](LangImpl10.vi.md)

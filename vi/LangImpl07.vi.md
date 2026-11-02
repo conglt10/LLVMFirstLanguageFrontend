@@ -672,4 +672,4 @@ clang++ -g toy.cpp `llvm-config --cxxflags --ldflags --system-libs --libs core o
 :language: c++
 ```
 
-[Tiếp theo: Biên dịch ra mã đối tượng](LangImpl08.md)
+[Tiếp theo: Biên dịch ra mã đối tượng](LangImpl08.vi.md)
